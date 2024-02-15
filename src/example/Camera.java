@@ -1,39 +1,29 @@
 package example;
 
-import java.util.ArrayList;
-
 public class Camera {
-    private final int ONE_PHOTO_POWER = 30;
+    private final int ONE_PHOTO_POWER = 10;
     private int batteryPercent;
-    private ArrayList<String> photos;
 
-    public Camera() {
-        this.photos = new ArrayList<>();
-        this.batteryPercent = 100;
+    public int getBatteryPercent(){
+        return this.batteryPercent;
     }
 
-    public int getBatteryPercent() {
-        return batteryPercent;
-    }
-
-    public void charging(int percent) {
-        if (percent < 0){
+    public void charging(int addingPercent) {
+        if (addingPercent < 0) {
             throw new RuntimeException();
         }
-        if (this.batteryPercent + percent > 100){
+        if (this.batteryPercent + addingPercent > 100) {
             this.batteryPercent = 100;
         } else {
-            this.batteryPercent += percent;
+            this.batteryPercent += addingPercent;
         }
     }
-
-    public void takePhoto(){
-        if (this.batteryPercent >= ONE_PHOTO_POWER) {
+    public void takePhoto() {
+        if (this.batteryPercent > ONE_PHOTO_POWER) {
             System.out.println("NEW PHOTO!");
             this.batteryPercent -= ONE_PHOTO_POWER;
         } else {
-            System.out.println("low battery power!");
+            System.out.println("low battery!!!");
         }
     }
-
 }
